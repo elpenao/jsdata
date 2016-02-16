@@ -35,6 +35,12 @@ module.exports = {
       res.status(204).end()
     })
     .then(null, next)
+  },
+  update: function(req, res, next){
+    Post.findByIdAndUpdate(req.body.id, { title: req.body.title, body: req.body.body }, { new: true})
+    .then(function(article) {
+      res.json(article);
+    })
+    .then(null, next)
   }
-
 }
